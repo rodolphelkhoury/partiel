@@ -17,16 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import com.example.partiel.components.InputTextField
-import com.example.partiel.viewModels.WelcomePageViewModel
-
 
 @Composable
-fun WelcomePage(
-    viewModel: WelcomePageViewModel,
-    navController: NavHostController
+fun SecondPage(
+    firstName: String,
+    lastName: String
 ) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -36,41 +33,31 @@ fun WelcomePage(
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
     ) {
 
-        Spacer(modifier = Modifier.height(10.dp))
-
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "Add Your First name and last name",
+            text = "Hello $firstName $lastName!, Pick a number",
             style = MaterialTheme.typography.headlineSmall,
             textAlign = TextAlign.Center,
             fontSize = 20.sp,
             color = MaterialTheme.colorScheme.primary
         )
 
+
         Spacer(modifier = Modifier.height(30.dp))
 
-        InputTextField(
-            value = viewModel.firstName,
-            onValueChange = viewModel::onFirstNameChange,
-            label = "First Name"
-        )
+
+
+        //
 
         Spacer(modifier = Modifier.height(5.dp))
 
-        InputTextField(
-            value = viewModel.lastName,
-            onValueChange = viewModel::onLastNameChange,
-            label = "Last Name"
-        )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Button(onClick = {
-            if (!viewModel.firstName.isEmpty() && !viewModel.lastName.isEmpty()) {
-                navController.navigate("greeting/${viewModel.firstName}/${viewModel.lastName}")
-            }
+
         }) {
-            Text("Continue")
+            Text("Play")
         }
 
         Spacer(modifier = Modifier.height(20.dp))
