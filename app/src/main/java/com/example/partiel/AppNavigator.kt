@@ -28,7 +28,21 @@ fun AppNavigator(
         ) { backStackEntry ->
             val firstName = backStackEntry.arguments?.getString("firstName") ?: ""
             val lastName = backStackEntry.arguments?.getString("lastName") ?: ""
-            SecondPage(firstName, lastName)
+            SecondPage(firstName, lastName, navController)
+        }
+
+        composable(
+            "play/{firstName}/{lastName}/{number}",
+            arguments = listOf(
+                navArgument("firstName") { type = NavType.StringType },
+                navArgument("lastName") { type = NavType.StringType },
+                navArgument("number") { type = NavType.IntType }
+            )
+        ) { backStackEntry ->
+            val firstName = backStackEntry.arguments?.getString("firstName") ?: ""
+            val lastName = backStackEntry.arguments?.getString("lastName") ?: ""
+            val number = backStackEntry.arguments?.getInt("number") ?: 0
+            ThirdPage(firstName, lastName, number, navController)
         }
     }
 }

@@ -60,4 +60,6 @@ dependencies {
 
     implementation("androidx.navigation:navigation-compose:2.7.5")
 
+    implementation("androidx.compose.material3:material3:1.4.0-alpha10")
+
 }
