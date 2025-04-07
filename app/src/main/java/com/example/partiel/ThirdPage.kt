@@ -11,21 +11,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TimePicker
+import androidx.compose.material3.TimePickerDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import com.example.partiel.components.InputTextField
-import com.example.partiel.viewModels.WelcomePageViewModel
-
+import androidx.navigation.NavController
 
 @Composable
-fun WelcomePage(
-    viewModel: WelcomePageViewModel,
-    navController: NavHostController
+fun ThirdPage(
+    firstName: String,
+    lastName: String,
+    number: Int,
+    navController: NavController
 ) {
     Column(
         modifier = Modifier
@@ -36,11 +37,9 @@ fun WelcomePage(
         verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically)
     ) {
 
-        Spacer(modifier = Modifier.height(10.dp))
-
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "Add Your First name and last name",
+            text = "Hello $firstName $lastName!, you chose $number",
             style = MaterialTheme.typography.headlineSmall,
             textAlign = TextAlign.Center,
             fontSize = 20.sp,
@@ -49,29 +48,14 @@ fun WelcomePage(
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        InputTextField(
-            value = viewModel.firstName,
-            onValueChange = viewModel::onFirstNameChange,
-            label = "First Name"
-        )
-
-        Spacer(modifier = Modifier.height(5.dp))
-
-        InputTextField(
-            value = viewModel.lastName,
-            onValueChange = viewModel::onLastNameChange,
-            label = "Last Name"
-        )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Button(onClick = {
-            if (!viewModel.firstName.isEmpty() && !viewModel.lastName.isEmpty()) {
-                navController.navigate("greeting/${viewModel.firstName}/${viewModel.lastName}")
-            }
         }) {
-            Text("Continue")
+            Text("Play")
         }
+
 
         Spacer(modifier = Modifier.height(20.dp))
     }
